@@ -8,6 +8,7 @@ const KEY = {
     S: 83,
     W: 87,
    };
+   
    const COLORS = {
     SKY: '#72D7EE',
     TREE: '#005108',

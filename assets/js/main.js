@@ -74,6 +74,7 @@ const initialize = async () => {
     background = await Loader.loadImage('assets/img/backgrounds.png');
     sprites = await Loader.loadImage('assets/img/sprites.png');
     run();
+    
 };
 const run = () => {
     let now = null

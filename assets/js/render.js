@@ -33,6 +33,7 @@ class Render {
       }
     }
 
+    
   static background(ctx, background, width, height, layer, rotation, offset) {
    rotation = rotation || 0;
    offset = offset || 0;
