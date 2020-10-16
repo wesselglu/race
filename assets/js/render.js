@@ -32,6 +32,34 @@ class Render {
         }
       }
     }
+
+  static background(ctx, background, width, height, layer, rotation, offset) {
+   rotation = rotation || 0;
+   offset = offset || 0;
+   let imageW = layer.w / 2;
+   let imageH = layer.h;
+   let sourceX = layer.x + Math.floor(layer.w * rotation);
+   let sourceY = layer.y;
+   let sourceW = Math.min(imageW, layer.x + layer.w - sourceX);
+   let sourceH = imageH;
+   let destX = 0;
+   let destY = offset;
+   let destW = Math.floor(width * (sourceW / imageW));
+   let destH = height;
+   ctx.drawImage(background, sourceX, sourceY, sourceW, sourceH, destX, destY, destW, destH);
+   if (sourceW < imageW) ctx.drawImage(background, layer.x, sourceY, imageW - sourceW, sourceH, destW - 1, destY, width - destW, destH);
+ }
+
+    static sprite(ctx, width, height, resolution, roadWidth, sprites, sprite, scale, destX, destY, offsetX, offsetY, clipY) {
+   //  scale for projection AND relative to roadWidth (for tweakUI)
+   let destW = ((sprite.w * scale * width) / 2) * (SPRITES.SCALE * roadWidth);
+   let destH = ((sprite.h * scale * width) / 2) * (SPRITES.SCALE * roadWidth);
+   destX = destX + destW * (offsetX || 0);
+   destY = destY + destH * (offsetY || 0);
+   let clipH = clipY ? Math.max(0, destY + destH - clipY) : 0;
+   if (clipH < destH) ctx.drawImage(sprites, sprite.x, sprite.y, sprite.w, sprite.h - (sprite.h * clipH) / destH, destX, destY, destW, destH - clipH);
+ }
+
    static fog(ctx, x, y, width, height, fog) {
       if (fog < 1) {
         ctx.globalAlpha = 1 - fog;
@@ -46,4 +74,6 @@ class Render {
     static laneMarkerWidth(projectedRoadWidth, lanes) {
       return projectedRoadWidth / Math.max(32, 8 * lanes);
     }
+    
    }
+   

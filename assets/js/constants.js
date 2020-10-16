@@ -22,6 +22,7 @@ const KEY = {
     HILLS: { x: 1, y: 302, w: 800, h: 300 },
     WOODS: { x: 1, y: 603, w: 800, h: 300 },
    };
+   
    const ROAD = {
     LENGTH: { NONE: 0, SHORT: 25, MEDIUM: 50, LONG: 100 }, // num segments
     HILL: { NONE: 0, LOW: 20, MEDIUM: 40, HIGH: 60 },
