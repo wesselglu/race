@@ -69,12 +69,18 @@ class Render {
         ctx.globalAlpha = 1;
       }
     }
+ static player(ctx, width, height, resolution, roadWidth, sprites, speedPercent, scale, destX, destY) {
+   // steer, updown
+   let sprite = SPRITES.BIKE[bikeSpriteSelector];
+   Render.sprite(ctx, width, height, resolution, roadWidth, sprites, sprite, scale, destX, destY, -0.5, -1.04);
+ }
+
     static rumbleWidth(projectedRoadWidth, lanes) {
       return projectedRoadWidth / Math.max(6, 2 * lanes);
     }
     static laneMarkerWidth(projectedRoadWidth, lanes) {
       return projectedRoadWidth / Math.max(32, 8 * lanes);
     }
-    
+
    }
    
