@@ -49,6 +49,7 @@ let hang = 0;
 let hangDelay = 50;
 let hangTimer = 0;
 let bikeSpriteSelector = 6;
+var used = false;
 
 window.addEventListener(
     'load',
@@ -150,6 +151,11 @@ const update = (dt) => {
         speed = Util.accelerate(speed, breaking, dt);
         brake = 14;
     } else if (keyFaster) {
+        if(!used) {
+               var audio = document.getElementById("song");
+               audio.play();
+               used = true;
+           }
         speed = Util.accelerate(speed, accel, dt);
         brake = 0;
     } else {
